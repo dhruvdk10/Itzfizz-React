@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
   const heroRef = useRef(null);
@@ -16,84 +19,62 @@ const HeroSection = () => {
   ];
 
   useEffect(() => {
-    if (!heroRef.current) {
-      console.warn("heroRef not available");
-      return;
-    }
+    const ctx = gsap.context(() => {
+      if (carImageRef.current) gsap.set(carImageRef.current, { x: 400 });
+      if (statCardsRef.current.length > 0) gsap.set(statCardsRef.current, { y: 100, opacity: 0 });
 
-    try {
-      gsap.registerPlugin(ScrollTrigger);
-      console.log("GSAP registered");
-
-      const context = gsap.context(() => {
-        if (carImageRef.current) gsap.set(carImageRef.current, { x: 400 });
-        if (statCardsRef.current.length > 0) gsap.set(statCardsRef.current, { y: 100, opacity: 0 });
-
-        const animationTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "+=850",
-            scrub: true,
-            pin: true
-          }
-        });
-
-        if (carImageRef.current) {
-          animationTimeline.to(carImageRef.current, {
-            x: 1900,
-            ease: "none",
-            duration: 1
-          }, 0);
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "+=850",
+          scrub: true,
+          pin: true
         }
+      });
 
-        if (statCardsRef.current.length > 0) {
-          animationTimeline.to(statCardsRef.current, {
-            y: 0,
-            opacity: 1,
-            stagger: 0.2,
-            duration: 0.3
-          }, 0.2);
-        }
+      if (carImageRef.current) {
+        tl.to(carImageRef.current, { x: 1900, ease: "none", duration: 1 }, 0);
+      }
 
-      }, heroRef);
+      if (statCardsRef.current.length > 0) {
+        tl.to(statCardsRef.current, { y: 0, opacity: 1, stagger: 0.2, duration: 0.3 }, 0.2);
+      }
 
-      console.log("Animations setup complete");
-      return () => context.revert();
-    } catch (error) {
-      console.error("Animation error:", error);
-    }
+    }, heroRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={heroRef}
       className="hero-section d-flex flex-column justify-content-center align-items-center text-center"
+      style={{ minHeight: "100vh", background: "#111", color: "#fff" }}
     >
-      <h1 className="hero-heading mb-5">
-        W E L C O M E &nbsp; T O &nbsp; I T Z F I Z Z
-      </h1>
+      <h1 className="hero-heading mb-5">W E L C O M E &nbsp; T O &nbsp; I T Z F I Z Z</h1>
 
-      <div className="row justify-content-center">
+      <div className="row justify-content-center mb-5">
         {statsData.map((stat, index) => (
           <div key={index} className="col-md col-10 mb-3">
             <div
-              className="stat-card"
+              className="stat-card p-3 rounded"
+              style={{ background: "#222" }}
               ref={el => (statCardsRef.current[index] = el)}
             >
-              <h2 className="stat-value">{stat.value}</h2>
-              <p className="stat-label">{stat.label}</p>
+              <h2>{stat.value}</h2>
+              <p>{stat.label}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="road-strip">
+      <div className="road-strip" style={{ width: "100%", overflow: "hidden" }}>
         <img
           ref={carImageRef}
           src={`${import.meta.env.BASE_URL}car-cyan-img.png`}
-          className="car-image"
           alt="car"
+          style={{ width: "200px" }}
         />
       </div>
     </section>
@@ -101,3 +82,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
