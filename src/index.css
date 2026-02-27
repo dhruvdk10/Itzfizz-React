@@ -43,13 +43,13 @@ body {
 .stat-value {
   font-size: 25px;
   font-weight: 700;
-  color: #ddd;
+  color: #eee;
   margin-bottom: 2px;
 }
 
 .stat-label {
   font-size: 14px;
-  color: #ccc;
+  color: #ddd;
   letter-spacing: 1px;
 }
 
