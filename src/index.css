@@ -20,11 +20,15 @@ body {
 }
 
 .stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
   backdrop-filter: blur(10px);
   width: 160px;
-  padding: 20px 10px;
   margin-bottom: 100px;
   border: 1px solid #292929;
   transition: 0.3s ease;
@@ -39,13 +43,13 @@ body {
 .stat-value {
   font-size: 25px;
   font-weight: 700;
-  color: #aaa;
-  margin-bottom: 5px;
+  color: #ddd;
+  margin-bottom: 2px;
 }
 
 .stat-label {
   font-size: 14px;
-  color: #aaa;
+  color: #ccc;
   letter-spacing: 1px;
 }
 
