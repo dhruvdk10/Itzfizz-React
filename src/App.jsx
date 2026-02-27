@@ -1,6 +1,6 @@
 import React, { useState} from "react";
-import HeroSection from "./components/HeroSection";
-import SplashScreen from "./components/SplashScreen";
+import { HeroSection } from "./components/HeroSection";
+import { SplashScreen } from "./components/SplashScreen";
 import "./index.css";
 
 function App() {
