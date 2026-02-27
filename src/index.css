@@ -36,8 +36,7 @@ body {
 }
 
 .stat-card:hover {
-  background: hsla(0, 0%, 16%, 0.5);
-  border: 1px solid #000;
+  border: 1px solid #5d5d5d;
 }
 
 .stat-value {
@@ -51,6 +50,7 @@ body {
   font-size: 14px;
   color: #ddd;
   letter-spacing: 1px;
+  margin-bottom: 5px;
 }
 
 .road-strip {
