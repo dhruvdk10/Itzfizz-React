@@ -7,15 +7,8 @@ const SplashScreen = ({ onFinish }) => {
   }, [onFinish]);
 
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      background: "#000",
-      color: "#fff"
-    }}>
-      <h1>I T Z F I Z Z</h1>
+    <div className="splash">
+      <h1 className="splash-text">I T Z F I Z Z</h1>
     </div>
   );
 };

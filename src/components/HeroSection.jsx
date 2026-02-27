@@ -29,12 +29,12 @@ const HeroSection = () => {
           start: "top top",
           end: "+=850",
           scrub: true,
-          pin: true
+          pin: true,
         }
       });
 
       if (carImageRef.current) {
-        tl.to(carImageRef.current, { x: 1900, ease: "none", duration: 1 }, 0);
+        tl.to(carImageRef.current, { x: 1900, ease: "none", duration: 1.5 }, 0);
       }
 
       if (statCardsRef.current.length > 0) {
@@ -50,7 +50,6 @@ const HeroSection = () => {
     <section
       ref={heroRef}
       className="hero-section d-flex flex-column justify-content-center align-items-center text-center"
-      style={{ minHeight: "100vh", background: "#111", color: "#fff" }}
     >
       <h1 className="hero-heading mb-5">W E L C O M E &nbsp; T O &nbsp; I T Z F I Z Z</h1>
 
@@ -59,22 +58,21 @@ const HeroSection = () => {
           <div key={index} className="col-md col-10 mb-3">
             <div
               className="stat-card p-3 rounded"
-              style={{ background: "#222" }}
               ref={el => (statCardsRef.current[index] = el)}
             >
-              <h2>{stat.value}</h2>
-              <p>{stat.label}</p>
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="road-strip" style={{ width: "100%", overflow: "hidden" }}>
+      <div className="road-strip">
         <img
           ref={carImageRef}
+          className="car-image"
           src={`${import.meta.env.BASE_URL}car-cyan-img.png`}
           alt="car"
-          style={{ width: "200px" }}
         />
       </div>
     </section>
